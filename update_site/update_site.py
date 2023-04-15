@@ -14,7 +14,7 @@ local_dir = '../src'
 local_files = os.listdir(local_dir)
 
 # Remote directory details
-remote_dir = '/public_html/new.tafsir.fussilat.com'
+remote_dir = args[4]
 
 # Load modification times of previously uploaded files from a file
 last_modified_file = os.path.join("", 'last_modified.txt')
