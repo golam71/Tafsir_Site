@@ -3,14 +3,33 @@ import os
 import sys
 args = sys.argv
 
-print(f"Uploading to {args[1]}")
+def list_directories(ftp, path="/"):
+    try:
+        ftp.cwd(path)
+        yield path
+        for file in ftp.nlst():
+            if file.startswith('.'):
+                continue
+            try:
+                ftp.cwd(file)
+                yield from list_directories(ftp, path + file + "/")
+                ftp.cwd("..")
+            except:
+                pass
+                # print("  File:", file)
+    except:
+        print("Failed to change directory to:", path)
+
+
+args = sys.argv
+
 # FTP server details
 ftp_host = args[1]
 ftp_user = args[2]
 ftp_pass = args[3]
 
 # Local file details
-local_dir = '../src'
+local_dir = '../app/build'
 local_files = os.listdir(local_dir)
 
 # Remote directory details
@@ -40,9 +59,13 @@ ftp = ftplib.FTP(ftp_host, ftp_user, ftp_pass)
 ftp.cwd(remote_dir)
 
 # Create necessary directories on the remote server
-for root, dirs, files in os.walk(local_dir):
-    subdir = os.path.relpath(root, local_dir).split('/')[0]
-    if subdir and subdir not in ftp.nlst() and subdir != ".":
+list_dir = list(list_directories(ftp, path=remote_dir))
+list_dir = [x.replace(remote_dir, "")[:-1] for x in list_dir]
+for subdir in [
+    os.path.relpath(root, local_dir).split('/')[0].replace("\\", "/")
+    for root, dirs, files in list(os.walk(local_dir))
+][1:]:
+    if subdir and subdir not in list_dir:
         ftp.mkd(subdir)
 
 # Upload files that have been modified since the last upload
