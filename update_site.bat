@@ -1,5 +1,5 @@
 @echo off
 cd app
-npm run build
+call npm run build
 cd ../update_site
-python update_site.py "ftp_host" "username" "password" "remote_directory"
+python update_site.py "72.167.57.45" "waseem@fussilat.com" "FileZ#2022" "public_html/test2.fussilat.com/"
