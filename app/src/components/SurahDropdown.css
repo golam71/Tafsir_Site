@@ -1,0 +1,59 @@
+.surah-dropdown {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #f2f2f2;
+  width: 100%;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.surah-dropdown:hover {
+    background-color: #d1d1d1;
+}
+
+.dropdown-menu {
+  align-self: center;
+  position: absolute;
+  max-height: calc(100vh - 200px);
+  padding: 9px;
+  overflow-y: clip;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.dropdown-menu .search-section {
+    align-self: center;
+    padding: 10px;
+}
+
+.dropdown-menu .search-section input {
+    align-self: center;
+    width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.dropdown-menu .surah-list {
+    align-self: center;
+    max-height: calc(100vh - 250px);
+  overflow-y: auto;
+}
+
+.dropdown-menu .surah-option {
+    align-self: center;
+    padding: 8px 10px;
+  cursor: pointer;
+}
+
+.dropdown-menu .surah-option:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown-menu .surah-option.active {
+  background-color: #ddd;
+}
