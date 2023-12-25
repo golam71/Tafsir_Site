@@ -1,10 +1,9 @@
 import React from 'react';
-import TafsirOptions from './TafsirOptions';
+import TafsirOptions from './components/TafsirOptions';
 
 function App() {
   return (
-    <div>
-      <h1>Hello, World Katheer!</h1>
+    <div className="">
       <TafsirOptions />
     </div>
   );
