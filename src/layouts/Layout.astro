@@ -1,0 +1,20 @@
+---
+// import Footer from "@components/Footer.astro";
+// import { NavBar } from "../solid/Navbar.jsx";
+
+export interface Props {
+  title: string;
+}
+
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <body class="bg-smoke-400">
+    <!-- <NavBar client:load />
+    <Footer /> -->
+    <slot />
+  </body>
+</html>
