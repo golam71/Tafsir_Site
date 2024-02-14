@@ -1,21 +1,21 @@
 ---
-
+import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
 import { NavBar } from "../components/NavBar";
+import { Hero } from "../components/Hero";
+import { Tafsir } from "../components/Tafsir";
 ---
 
-<Layout title="Salam App">
-<div>
-
-  <NavBar/>
-</div>
+<Layout title="">
+  <div>
+    <NavBar client:load />
+    <Hero/>
+    <Tafsir client:load />
+  </div>
 </Layout>
 
 <style>
   html {
     scroll-behavior: smooth;
-
   }
-  
-  
 </style>

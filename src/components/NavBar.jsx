@@ -3,10 +3,32 @@ export const NavBar = (props) => {
     <nav class="bg-grey-300 text-white">
       <div class="2xl:max-w-[90%] mx-auto px-2 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <a href="/">Fussilat</a>
-          <p class="hidden sm:block arabic">Tafsir of the Quran</p>
+          <a class="flex gfont font-bold text-lg " href="/">
+            <svg
+              class="mx-1"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 20 20"
+            >
+              <rect
+                x="0"
+                y="0"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="none"
+              />
+              <path
+                fill="currentColor"
+                d="M17 5.95v10.351c0 .522-.452.771-1 1.16c-.44.313-1-.075-1-.587V6.76c0-.211-.074-.412-.314-.535c-.24-.123-7.738-4.065-7.738-4.065c-.121-.045-.649-.378-1.353-.016c-.669.344-1.033.718-1.126.894l8.18 4.482c.217.114.351.29.351.516v10.802a.67.67 0 0 1-.369.585a.746.746 0 0 1-.333.077a.736.736 0 0 1-.386-.104c-.215-.131-7.774-4.766-8.273-5.067c-.24-.144-.521-.439-.527-.658L3 3.385c0-.198-.023-.547.289-1.032C3.986 1.269 6.418.036 7.649.675l8.999 4.555c.217.112.352.336.352.72"
+              />
+            </svg>
+            <p>Fussilat</p>
+          </a>
+          <p class="hidden sm:block arabic">ØªÙ␦Ø§Ø³Ù␦Ø± Ø§Ù␦Ù␦Ø±Ø¢Ù␦ Tafsir of the Quran</p>
           <div>
-            <button id="theme" class="p-2" onClick={theme()}>
+            <button id="theme" class="px-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -35,7 +57,7 @@ export const NavBar = (props) => {
                 </g>
               </svg>
             </button>
-            <button id="settings" onClick={settings()}>
+            <button id="settings">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -62,3 +84,4 @@ export const NavBar = (props) => {
     </nav>
   );
 };
+
