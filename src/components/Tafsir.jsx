@@ -41,6 +41,38 @@ const data = [
   },
 ];
 
+function ShowTafsir(id) {
+  switch (id) {
+    case 0:
+      console.log("Tafsir Al-Quran Al-Azeem by Ibn Kathir");
+      break;
+    case 1:
+      console.log("Maarif ul-Quran by Muhammad Shafi'");
+      break;
+    case 2:
+      console.log("Tafheem ul-Quran by Abul-Aala Maududi");
+      break;
+    case 3:
+      console.log("Tafsir Jalalayn by As-Suyuti and Al-Mahalli");
+      break;
+    case 4:
+      console.log("Tafsir As-Sa'di by Abdur Rahman al-Sa'di");
+      break;
+    case 5:
+      console.log("Commentary on the Quran by Muhammad Al-Ghazali");
+      break;
+    case 6:
+      console.log("Tafsir Qurtubi (Incomplete) by Abu 'Abdullah Al-Qurtubi");
+      break;
+    case 7:
+      console.log("Tafsir At-Tabari (Incomplete) by Ibn Jarir At-Tabari");
+      break;
+    default:
+      console.log("Invalid ID provided");
+      break;
+  }
+}
+
 function SelectCard(link) {
   //make every card have transparent border so the previous card selected will be un-selected
   var elements = document.getElementsByClassName("TafsirCard");
@@ -52,7 +84,9 @@ function SelectCard(link) {
 
   document.getElementById(link).classList.remove("border-transparent");
   document.getElementById(link).classList.add("border-purple-300");
-  console.log(document.getElementById(link));
+  //console.log(document.getElementById(link));
+  link = Number(link);
+  ShowTafsir(link);
 }
 
 const TafsirCard = ({ name, writer, link, onClick }) => (
@@ -88,4 +122,3 @@ export const Tafsir = (props) => {
     </div>
   );
 };
-

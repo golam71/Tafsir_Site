@@ -26,7 +26,7 @@ export const NavBar = (props) => {
             </svg>
             <p>Fussilat</p>
           </a>
-          <p class="hidden sm:block arabic">ØªÙ␦Ø§Ø³Ù␦Ø± Ø§Ù␦Ù␦Ø±Ø¢Ù␦ Tafsir of the Quran</p>
+          <p class="hidden sm:block arabic">تفسير القرآن Tafsir of the Quran</p>
           <div>
             <button id="theme" class="px-2">
               <svg
@@ -84,4 +84,3 @@ export const NavBar = (props) => {
     </nav>
   );
 };
-
