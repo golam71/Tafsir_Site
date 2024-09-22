@@ -4,14 +4,15 @@ import Layout from "../layouts/Layout.astro";
 import { NavBar } from "../components/NavBar";
 import { Hero } from "../components/Hero";
 import { Tafsir } from "../components/Tafsir";
+import ShowTafsir from "../components/showTafsir.astro";
 ---
 
 <Layout title="">
-  <div>
+  
     <NavBar client:load />
     <Hero/>
     <Tafsir client:load />
-  </div>
+    <ShowTafsir client:load />
 </Layout>
 
 <style>

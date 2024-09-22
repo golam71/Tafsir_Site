@@ -6,6 +6,7 @@ export const Hero = (props) => {
       </h1>
       <div class="flex justify-around w-screen mt-10">
         <input
+          id="surah"
           class="mx-2 sm:mx-10 py-3 px-1 sm:px-5 w-5/6 sm:w-1/2 bg-grey-300 outline-none text-white"
           type="text"
           placeholder="Surah Number"
@@ -127,7 +128,10 @@ export const Hero = (props) => {
           <option value="113. Al-Falaq (The Daybreak)"></option>
           <option value="114. An-Naas (The Mankind)"></option>
         </datalist>
+
+        {/* ayat number  */}
         <input
+          id="ayat"
           class="mx-2 sm:mx-10 py-3 px-1 sm:px-5 w-4/6 sm:w-1/2 bg-grey-300 outline-none text-white"
           type="number"
           placeholder="Ayat Number"

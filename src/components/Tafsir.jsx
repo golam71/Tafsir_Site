@@ -1,124 +1,147 @@
-const data = [
+import { TafsirCard } from "./tafsirCard";
+
+let surah = 1;
+let ayat = 1;
+let book = "ibnkathir";
+
+const tafsirData = [
   {
     name: "Tafsir Al-Quran Al-Azeem",
+    id: "ibnkathir",
     writer: "Ibn Kathir",
-    link: "0",
   },
   {
     name: "Maarif ul-Quran",
+    id: "maarif",
     writer: "Muhammad Shafi'",
-    link: "1",
   },
   {
     name: "Tafheem ul-Quran",
+    id: "maududi",
     writer: "Abul-Aala Maududi",
-    link: "2",
   },
   {
     name: "Tafsir Jalalayn",
+    id: "jalalayn",
     writer: "As-Suyuti and Al-Mahalli",
-    link: "3",
   },
-  {
-    name: "Tafsir As-Sa'di",
-    writer: "Abdur Rahman al-Saâ␦␦di",
-    link: "4",
-  },
-  {
-    name: "Commentary on the Quran",
-    writer: "Muhammad Al-Ghazali",
-    link: "5",
-  },
-  {
-    name: "Tafsir Qurtubi (Incomplete)",
-    writer: "Abu 'Abdullah Al-Qurtubi",
-    link: "6",
-  },
-  {
-    name: "Tafsir At-Tabari (Incomplete)",
-    writer: "Ibn Jarir At-Tabari",
-    link: "7",
-  },
+  // {
+  //   name: "Tafsir As-Sa'di",
+  //   id: "tafseer_as_sadi",
+  //   writer: "Abdur Rahman al-Sa'di",
+  // },
+  // {
+  //   name: "Commentary on the Quran",
+  //   id: "commentary_al_ghazali",
+  //   writer: "Muhammad Al-Ghazali",
+  // },
+  // {
+  //   name: "Tafsir Qurtubi (Incomplete)",
+  //   id: "tafseer_qurtubi",
+  //   writer: "Abu 'Abdullah Al-Qurtubi",
+  // },
+  // {
+  //   name: "Tafsir At-Tabari (Incomplete)",
+  //   id: "tafseer_at_tabari",
+  //   writer: "Ibn Jarir At-Tabari",
+  // },
 ];
 
-function ShowTafsir(id) {
-  switch (id) {
-    case 0:
-      console.log("Tafsir Al-Quran Al-Azeem by Ibn Kathir");
-      break;
-    case 1:
-      console.log("Maarif ul-Quran by Muhammad Shafi'");
-      break;
-    case 2:
-      console.log("Tafheem ul-Quran by Abul-Aala Maududi");
-      break;
-    case 3:
-      console.log("Tafsir Jalalayn by As-Suyuti and Al-Mahalli");
-      break;
-    case 4:
-      console.log("Tafsir As-Sa'di by Abdur Rahman al-Sa'di");
-      break;
-    case 5:
-      console.log("Commentary on the Quran by Muhammad Al-Ghazali");
-      break;
-    case 6:
-      console.log("Tafsir Qurtubi (Incomplete) by Abu 'Abdullah Al-Qurtubi");
-      break;
-    case 7:
-      console.log("Tafsir At-Tabari (Incomplete) by Ibn Jarir At-Tabari");
-      break;
-    default:
-      console.log("Invalid ID provided");
-      break;
+function selectTafsirCard(selectedId) {
+  const cardElements = document.querySelectorAll(".TafsirCard");
+  cardElements.forEach((card) => {
+    card.classList.add("border-transparent");
+  });
+
+  // Highlight the selected card and show its details
+  const selectedCard = document.getElementById(selectedId);
+  if (selectedCard) {
+    selectedCard.classList.remove("border-transparent");
+    selectedCard.classList.add("border-purple-300");
+    book = String(selectedCard.id);
   }
+  showTafsir();
 }
 
-function SelectCard(link) {
-  //make every card have transparent border so the previous card selected will be un-selected
-  var elements = document.getElementsByClassName("TafsirCard");
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].classList.add("border-transparent");
-  }
-
-  //now add border to the card that is selected now and remove the cards transparent feature so it can be seen
-
-  document.getElementById(link).classList.remove("border-transparent");
-  document.getElementById(link).classList.add("border-purple-300");
-  //console.log(document.getElementById(link));
-  link = Number(link);
-  ShowTafsir(link);
-}
-
-const TafsirCard = ({ name, writer, link, onClick }) => (
-  <div
-    id={link}
-    className="TafsirCard bg-grey-300 flex flex-col align-middle m-5 text-white  py-5 rounded-lg shadow-lg border-2 border-transparent"
-    onClick={() => onClick(link)}
-  >
-    <button>
-      <h2 className="text-lg text-center font-bold">{name}</h2>
-      <p className="text-sm text-center">{writer}</p>
-    </button>
-  </div>
-);
-
-export const Tafsir = (props) => {
+// Main Tafsir component
+export const Tafsir = () => {
   return (
     <div>
       <h1 className="text-white text-center text-xl m-5 font-medium">
         Select Tafsirs
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {data.map((item) => (
+        {tafsirData.map((item) => (
           <TafsirCard
-            key={item.link}
+            key={item.id}
+            id={item.id}
             name={item.name}
             writer={item.writer}
-            link={item.link}
-            onClick={SelectCard}
+            onClick={selectTafsirCard}
           />
         ))}
       </div>
     </div>
   );
 };
+
+async function fetchTafsir(book, surah, ayat) {
+  const url = `https://tafsir.fussilat.com/api2/${book}/${surah}/${ayat}`;
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    let data = await response.json();
+
+    function fixMisencodedText(str) {
+      return new TextDecoder("utf-8").decode(
+        new Uint8Array([...str].map((c) => c.charCodeAt(0)))
+      );
+    }
+
+    if (data.text) {
+      data.text = fixMisencodedText(data.text);
+    }
+
+    return data; // Return the data object
+  } catch (error) {
+    throw new Error("Failed to fetch Tafsir: " + error.message);
+  }
+}
+
+function getDataFromUser() {
+  let selectedValue = document.getElementById("surah").value;
+  let dataList = document.querySelector("datalist");
+  let options = dataList.getElementsByTagName("option");
+  let optionsArray = Array.from(options);
+
+  let surahNumber =
+    optionsArray.findIndex((option) => option.value === selectedValue) + 1;
+  let ayatNumber = document.getElementById("ayat").value;
+
+  return {
+    book: String(book),
+    surah: Number(surahNumber),
+    ayat: Number(ayatNumber),
+  };
+}
+
+async function showTafsir() {
+  const tafsirTextElement = document.getElementById("tafsirText");
+  tafsirTextElement.innerText = "Loading..."; // Show loading message
+
+  const { book, surah, ayat } = getDataFromUser();
+
+  try {
+    const fetchedData = await fetchTafsir(book, surah, ayat);
+    tafsirTextElement.innerText = fetchedData.text; // Show fetched data
+  } catch (error) {
+    tafsirTextElement.innerText = error.message; // Display the error message
+  }
+}
+
+function runFirst() {}
