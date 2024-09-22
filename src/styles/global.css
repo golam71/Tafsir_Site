@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css?family=Tangerine");
+
+.gfont {
+  font-family: "Tangerine", cursive;
+  font-size: 30px;
+  text-shadow: 2px 2px 2px #000;
+}
+
+datalist {
+  position: absolute;
+  max-height: 20em;
+  border: 0 none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #2d3748; /* Added background color */
+}
+
+datalist option {
+  font-size: 0.8em;
+  padding: 0.3em 1em;
+  cursor: pointer;
+  color: #fff; /* Added text color */
+}
+
+/* option active styles */
+datalist option:hover,
+datalist option:focus {
+  background-color: #2d3748; /* Adjusted hover/focus background color */
+  outline: 0 none;
+}
+
+#surahs {
+  font-size: 1.8em;
+  padding: 0.3em 1em;
+  background-color: #2d3748;
+  cursor: pointer;
+  color: #fff; /* Added text color */
+}

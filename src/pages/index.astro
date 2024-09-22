@@ -1,0 +1,22 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import { NavBar } from "../components/NavBar";
+import { Hero } from "../components/Hero";
+import { Tafsir } from "../components/Tafsir";
+import ShowTafsir from "../components/showTafsir.astro";
+---
+
+<Layout title="">
+  
+    <NavBar client:load />
+    <Hero/>
+    <Tafsir client:load />
+    <ShowTafsir client:load />
+</Layout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
