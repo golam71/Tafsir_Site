@@ -8,11 +8,10 @@ import ShowTafsir from "../components/showTafsir.astro";
 ---
 
 <Layout title="">
-  
-    <NavBar client:load />
-    <Hero/>
-    <Tafsir client:load />
-    <ShowTafsir client:load />
+  <NavBar client:load />
+  <Hero />
+  <Tafsir />
+  <ShowTafsir />
 </Layout>
 
 <style>
@@ -20,3 +19,10 @@ import ShowTafsir from "../components/showTafsir.astro";
     scroll-behavior: smooth;
   }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("surah").value = "1. Al-Faatiha (The Opener)";
+    document.getElementById("ayat").value = 1;
+  });
+</script>
